@@ -8,15 +8,28 @@ namespace ListOnNonGenericCollection.Maps
         public ProductMap()
         {
             Id(e => e.Id);
+
+            Property(e => e.Name);
+
             List(e => e.Tags, cm =>
             {
+                cm.Cascade(Cascade.Remove);
+                cm.Lazy(CollectionLazy.Lazy);
                 cm.Table("Product_Tag");
-                cm.Key(km=>km.Column("ProductId"));
+                cm.Key(km =>
+                {
+                    km.Column("ProductId");
+                    km.ForeignKey("FK_Product");
+                });
                 cm.Access(Accessor.ReadOnly);
-            }, m =>
+                cm.Index(lim => lim.Column("Position"));
+            },
+            m => m.ManyToMany(mmm =>
             {
-                m.OneToMany();
-            });
+                mmm.Class(typeof(Tag));
+                mmm.Column("TagId");
+                mmm.ForeignKey("FK_Tag");
+            }));
         }
     }
 }

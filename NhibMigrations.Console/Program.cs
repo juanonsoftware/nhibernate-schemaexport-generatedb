@@ -30,8 +30,13 @@ namespace NhibMigrations.Console
             var fileName = ConfigurationManager.AppSettings[Constants.Version] + ".sql";
 
             var mapper = BuildModelMapper(Helper.GetMappingAssemblies());
+            var hbmMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
+
+            Logger.Info("Mappings");
+            Logger.Info(hbmMapping.AsString());
+
             var cfg = GetConfiguration(connectionString);
-            cfg.AddDeserializedMapping(mapper.CompileMappingForAllExplicitlyAddedEntities(), null);
+            cfg.AddDeserializedMapping(hbmMapping, null);
 
             var error = string.Empty;
             var backupOut = System.Console.Out;
