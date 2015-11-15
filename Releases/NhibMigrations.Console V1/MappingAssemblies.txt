@@ -1,1 +1,4 @@
-﻿ListOnNonGenericCollection.dll
+﻿GdNet.Domain.App.Mapping.dll
+GdNet.Domain.Core.Mapping.dll
+GdNet.Qlhstd.Domain.Mapping.dll
+RE.Domain.Mapping.dll
