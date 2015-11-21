@@ -16,6 +16,7 @@ namespace NhibMigrations.Mapping
             });
             Property(u => u.Email);
             Property(u => u.Address);
+            Property(u => u.Note);
 
             List(e => e.VisitedPlaces, cm =>
             {

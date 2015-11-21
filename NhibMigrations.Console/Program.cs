@@ -27,7 +27,7 @@ namespace NhibMigrations.Console
             var connectionString = ConfigurationManager.AppSettings[Constants.ConnectionString];
             var doUpdate = Convert.ToBoolean(ConfigurationManager.AppSettings[Constants.DoUpdate]);
             var doDrop = Convert.ToBoolean(ConfigurationManager.AppSettings[Constants.DoDrop]);
-            var fileName = ConfigurationManager.AppSettings[Constants.Version] + ".sql";
+            var fileName = DateTime.Now.ToString("yyyyMMdd-hhmmss") + ".sql";
 
             var mapper = BuildModelMapper(Helper.GetMappingAssemblies());
             var hbmMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
