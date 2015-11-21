@@ -1,2 +1,0 @@
-﻿1. Mapping files are placed on MappingAssemblies.txt
-2. 
