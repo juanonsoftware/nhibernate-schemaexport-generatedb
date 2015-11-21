@@ -17,6 +17,7 @@ namespace NhibMigrations.Mapping
             Property(u => u.Email);
             Property(u => u.Address);
             Property(u => u.Note);
+            Property(u => u.DateOfBirth);
 
             List(e => e.VisitedPlaces, cm =>
             {

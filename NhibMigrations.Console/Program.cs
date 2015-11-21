@@ -18,7 +18,9 @@ namespace NhibMigrations.Console
     class Program
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(Program));
-        private static int _mappersCount = 0;
+        private static readonly List<string> MapperList = new List<string>();
+
+        private static int _mappersCount;
 
         static void Main(string[] args)
         {
@@ -69,8 +71,19 @@ namespace NhibMigrations.Console
             }
 
             System.Console.SetOut(backupOut);
-            System.Console.WriteLine(string.IsNullOrWhiteSpace(error) ? string.Format("Done for {0} types", _mappersCount) : error);
-            System.Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(error))
+            {
+                System.Console.WriteLine("Done for {0} types", _mappersCount);
+                foreach (var map in MapperList)
+                {
+                    System.Console.WriteLine(map);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine(error);
+            }
         }
 
         private static ModelMapper BuildModelMapper(IEnumerable<string> mappingAssemblies)
@@ -81,7 +94,9 @@ namespace NhibMigrations.Console
             {
                 var asm = Assembly.LoadFrom(mappingAssembly);
                 var types = asm.GetTypes().Where(type => type.IsClass && type.IsAbstract == false).ToList();
+
                 _mappersCount += types.Count();
+                MapperList.AddRange(types.Select(x => x.FullName));
 
                 mapper.AddMappings(types);
             }

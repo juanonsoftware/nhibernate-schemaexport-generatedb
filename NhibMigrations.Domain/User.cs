@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace NhibMigrations.Domain
@@ -12,6 +13,7 @@ namespace NhibMigrations.Domain
         public string Email { get; set; }
         public string Address { get; set; }
         public string Note { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public ReadOnlyCollection<Province> VisitedPlaces
         {

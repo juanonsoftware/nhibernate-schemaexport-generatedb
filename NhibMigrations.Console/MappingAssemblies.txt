@@ -1,1 +1,1 @@
-﻿..\..\..\NhibMigrations.Mapping\bin\Debug\NhibMigrations.Mapping.dll
+﻿NhibMigrations.Mapping.dll
